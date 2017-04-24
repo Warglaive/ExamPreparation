@@ -15,21 +15,33 @@ namespace _02.SoftUni_Karaoke
             , StringSplitOptions.RemoveEmptyEntries)
                 .ToList();
 
-            var song = Console.ReadLine().Split(new[] { ',',  }
-            , StringSplitOptions.RemoveEmptyEntries)
+            var songs = Console.ReadLine().Split(new[] { ','}
+            , StringSplitOptions.RemoveEmptyEntries).Select(y => y.Trim())
             .ToList();
+
+            var result = new Dictionary<string, List<string>>();
+
             var stagePerformance = Console.ReadLine();
-            while (stagePerformance != "dawn") 
+            while (stagePerformance != "dawn")
             {
-                var token = stagePerformance.Split(new[] { ',', ' ' }
+
+                var token = stagePerformance.Split(new[] { ',' }
             , StringSplitOptions.RemoveEmptyEntries)
                 .ToList();
 
 
-                var participant = token[0];
-                var songForParticipant = token[1];
-                var award = token[3];
 
+                var participant = token[0].Trim();
+                var songForParticipant = token[1].Trim();
+                var award = token[2].Trim();
+                if (participants.Contains(participant) && songs.Contains(songForParticipant)) //possible bug
+                {
+                    if (!result.ContainsKey(participant))
+                    {
+                        result.Add(participant, new List<string>());
+                        result[participant].Add(award);
+                    }
+                }
 
                 stagePerformance = Console.ReadLine();
             }

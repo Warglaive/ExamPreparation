@@ -10,37 +10,15 @@ namespace _04.Roli_The_Coder
     {
        public static void Main()
         {
-            while (true)
+            var n = int.Parse(Console.ReadLine());
+            Console.WriteLine(new string('*', n));
+            for (int i = 0; i < n-2; i++)
             {
-                var currentLines = Console.ReadLine();
-                if (currentLines == "Time for Code")
-                {
-                    break;
-                }
-                var lineParts = currentLines.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-                var eventId = 0;
-                if (int.TryParse(lineParts[0], out eventId))
-                {
-                    continue;
-                }
-                string eventName = string.Empty;
-                if (lineParts.Length > 1 && lineParts[1].StartsWith("#")) 
-                {
-                    eventName = lineParts[1].Trim('#');
-                }
-                else
-                {
-                    continue;
-                }
-                if (lineParts.Length > 2)
-                    lineParts
-                    .Skip(2);
-
-                  
-                {
-                    lineParts = lineParts.Skip(2).ToArray();
-                }
+                Console.Write("*");
+                Console.WriteLine(new string(' ', n-2));
+                Console.Write("*");
             }
+            Console.WriteLine();
         }
     }
 }

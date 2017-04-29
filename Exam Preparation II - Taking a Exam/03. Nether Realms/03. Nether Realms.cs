@@ -58,7 +58,7 @@ namespace _03.Nether_Realms
                 {
                     Health = health,
                     Damage = damage
-                });
+                });                
             }
             foreach (var demonEntry in result)
             {

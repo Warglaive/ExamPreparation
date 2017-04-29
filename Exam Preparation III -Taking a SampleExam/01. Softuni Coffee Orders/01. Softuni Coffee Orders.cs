@@ -1,26 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Globalization;
 namespace _01.Softuni_Coffee_Orders
 {
-   public class Program
+    public class Program
     {
-       public static void Main()
+        public static void Main()
         {
-            int n = int.Parse(Console.ReadLine());
+            var n = int.Parse(Console.ReadLine());
+            var totalPrice = 0.0m;
             for (int i = 0; i < n; i++)
             {
-
-                string[] inputParams = Console.ReadLine().Split('/');
-                string root = inputParams[0];
-                string[] fileParams = inputParams[inputParams.Length - 1].Split(new[] { '.', ';' },StringSplitOptions.RemoveEmptyEntries);
-                string FileName = fileParams[1];
-
+                var pricePerCapsule = decimal.Parse(Console.ReadLine());
+                var orderDate = DateTime.ParseExact(Console.ReadLine()
+                    , "d/M/yyyy", CultureInfo.InvariantCulture);
+                var capsuleCount = int.Parse(Console.ReadLine());
+                var year = orderDate.Year;
+                var month = orderDate.Month;
+                decimal daysInMonth = DateTime.DaysInMonth(year, month);
+                var price = (daysInMonth * capsuleCount) * pricePerCapsule;
+                Console.WriteLine($"The price for the coffee is: ${price:f2}");
+                totalPrice += price;
             }
-            //query
-        }
+            Console.WriteLine($"Total: ${totalPrice:f2}");
+         }
     }
 }
